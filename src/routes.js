@@ -9,16 +9,16 @@ import ProfessionalController from './app/controllers/ProfessionalController';
 const routes = new Router();
 
 routes.post('/users', UserController.store);
-routes.post('/session', SessionController.store);
 routes.post('/professional', ProfessionalController.store);
-routes.get('/evaluations/professional/:professional_id', ProfessionalController.indexEvaluations);
-routes.get('/evaluations/user/:user_id', UserController.indexEvaluations);
+routes.post('/session', SessionController.store);
 
 routes.use(authMiddle);
 
 routes.post('/evaluate/:professional_id', EvaluationController.store);
 routes.put('/evaluate/:evaluate_id', EvaluationController.update);
 routes.delete('/evaluate/:evaluate_id', EvaluationController.delete);
+routes.get('/evaluations/user/:user_id', UserController.indexEvaluations);
+routes.get('/evaluations/professional/:professional_id', ProfessionalController.indexEvaluations);
 routes.put('/users', UserController.update);
 
 export default routes;
