@@ -11,7 +11,8 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/session', SessionController.store);
 routes.post('/professional', ProfessionalController.store);
-routes.get('/evaluations/:professional_id', EvaluationController.index);
+routes.get('/evaluations/professional/:professional_id', ProfessionalController.indexEvaluations);
+routes.get('/evaluations/user/:user_id', UserController.indexEvaluations);
 
 routes.use(authMiddle);
 

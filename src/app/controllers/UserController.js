@@ -2,6 +2,17 @@ import * as Yup from 'yup';
 import User from '../models/User';
 
 class UserController {
+
+    async indexEvaluations(req, res) {
+        const {user_id} = req.params;
+
+        const userEvaluations = await User.findByPk(user_id, {
+            include: {association: 'evaluationsUser'}
+        });
+
+        res.json(userEvaluations.evaluationsUser);
+    }
+
     async store(req, res) {
 
         const userExists = await User.findOne({

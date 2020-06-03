@@ -26,7 +26,7 @@ class Professional extends Model {
     }
 
     static associate(models) {
-        this.hasMany(models.Evaluation, {foreignKey: 'professional_id', as: 'evaluations'})
+        this.hasMany(models.Evaluation, {foreignKey: 'professional_id', as: 'evaluationsProfessional'})
     }
 
     checkPassword(password) {

@@ -2,6 +2,16 @@ import Professional from '../models/Professional';
 
 class ProfessionalController {
 
+    async indexEvaluations(req, res) {
+        const {professional_id} = req.params;
+
+        const profEvaluations = await Professional.findByPk(professional_id,  {
+            include: {association: 'evaluationsProfessional'}
+        })
+
+        return res.json(profEvaluations.evaluationsProfessional);
+    }
+
     async store(req, res) {
         const emailExists = await Professional.findOne({
                 where: {email: req.body.email}
