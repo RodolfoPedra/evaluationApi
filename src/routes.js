@@ -11,6 +11,7 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/professional', ProfessionalController.store);
 routes.post('/session', SessionController.store);
+routes.get('/professionals', ProfessionalController.index);
 
 routes.use(authMiddle);
 

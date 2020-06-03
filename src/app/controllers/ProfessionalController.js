@@ -2,6 +2,13 @@ import Professional from '../models/Professional';
 
 class ProfessionalController {
 
+    async index(req, res) {
+        
+        const allProfessionals = await Professional.findAll();
+
+        res.json(allProfessionals);
+    }
+
     async indexEvaluations(req, res) {
         const {professional_id} = req.params;
 
