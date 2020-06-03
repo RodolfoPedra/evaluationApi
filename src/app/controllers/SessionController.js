@@ -39,33 +39,6 @@ class SessionController {
             })
         });
     }
-
-    // async storeProfessional(req, res) {
-
-    //     const {email, password} = req.body;
-
-    //     const professional = await Professional.findOne({ where: {email}});
-    //     if(!professional) {
-    //         return res.status(401).json({error: "Usuário não cadastrado"})
-    //     }
-
-    //     if(!(await professional.checkPassword(password))) {
-    //         return res.status(401).json({error: "Senha Incorreta"})
-    //     }
-
-    //     const {id, name} = professional;
-
-    //     return res.json({
-    //         professional: {
-    //             id, 
-    //             name,
-    //             email
-    //         },
-    //         token: jwt.sign({id}, authJwt.code, {
-    //             expiresIn: authJwt.expiresIn
-    //         })
-    //     });
-    // }
 }
 
 export default new SessionController();
