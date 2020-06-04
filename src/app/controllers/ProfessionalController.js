@@ -4,9 +4,11 @@ class ProfessionalController {
 
     async index(req, res) {
         
-        const allProfessionals = await Professional.findAll();
+        const allProfessionals = await Professional.findAll({
+            attributes: ['id', 'name', 'email', 'workplace']
+        });
 
-        res.json(allProfessionals);
+        return res.json(allProfessionals);
     }
 
     async indexEvaluations(req, res) {
@@ -15,8 +17,8 @@ class ProfessionalController {
         const profEvaluations = await Professional.findByPk(professional_id,  {
             include: {association: 'evaluationsProfessional'}
         })
-
-        return res.json(profEvaluations.evaluationsProfessional);
+        
+        res.json(profEvaluations);
     }
 
     async store(req, res) {
