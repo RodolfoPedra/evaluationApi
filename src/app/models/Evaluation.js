@@ -5,8 +5,7 @@ class Evaluation extends Model {
         super.init(
             {
                 opinion: Sequelize.STRING,
-                note: Sequelize.INTEGER,
-                check: Sequelize.BOOLEAN
+                note: Sequelize.INTEGER
             },
             {
                 sequelize
