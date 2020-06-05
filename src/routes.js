@@ -16,10 +16,11 @@ routes.get('/professionals', ProfessionalController.index);
 routes.use(authMiddle);
 
 routes.post('/evaluate/:professional_id', EvaluationController.store);
-routes.put('/evaluate/:evaluate_id', EvaluationController.update);
-routes.delete('/evaluate/:evaluate_id', EvaluationController.delete);
 routes.get('/evaluations/user/:user_id', UserController.indexEvaluations);
-routes.get('/evaluations/professional/:professional_id', ProfessionalController.indexEvaluations);
+routes.get('/evaluations/professional/:professional_id', EvaluationController.indexEvaluations);
+routes.put('/evaluate/:evaluate_id', EvaluationController.update);
 routes.put('/users', UserController.update);
+routes.delete('/evaluate/:evaluate_id', EvaluationController.delete);
+// routes.get('/evaluations/professional/:professional_id', ProfessionalController.indexEvaluations);
 
 export default routes;

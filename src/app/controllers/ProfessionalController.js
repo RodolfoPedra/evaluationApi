@@ -1,4 +1,5 @@
 import Professional from '../models/Professional';
+import User from '../models/User';
 
 class ProfessionalController {
 
@@ -15,7 +16,7 @@ class ProfessionalController {
         const {professional_id} = req.params;
 
         const profEvaluations = await Professional.findByPk(professional_id,  {
-            include: {association: 'evaluationsProfessional'}
+            include: [{association: 'evaluationsProfessional'}]
         })
         
         res.json(profEvaluations);

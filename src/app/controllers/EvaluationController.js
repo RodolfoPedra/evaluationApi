@@ -1,17 +1,25 @@
 import * as Yup from 'yup';
+import {Op} from 'sequelize';
 import Evaluation from '../models/Evaluation';
 import Professional from '../models/Professional';
+import User from '../models/User';
 
 class EvaluationController {
 
-    async index(req, res) {
+    async indexEvaluations(req, res) {
         const {professional_id} = req.params;
 
-        const profEvaluations = await Professional.findByPk(professional_id,  {
-            include: {association: 'evaluations'}
-        })
+        const evaluations = await Evaluation.findAll({
+            where: {
+                professional_id: professional_id
+            },
+            include: [
+                {association: 'user', attributes: ['id', 'name']},
+                {association: 'professional', attributes: ['name', 'workplace']}
+            ]
+        });
 
-        return res.json(profEvaluations.evaluations);
+        return res.json(evaluations);
     }
 
     async store(req, res) {
