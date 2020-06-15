@@ -6,7 +6,10 @@ class ProfessionalController {
     async index(req, res) {
         
         const allProfessionals = await Professional.findAll({
-            attributes: ['id', 'name', 'email', 'workplace']
+            attributes: ['id', 'name', 'email', 'workplace'],
+            include: [
+                {association: 'evaluationsProfessional'}
+            ]
         });
 
         return res.json(allProfessionals);
@@ -16,7 +19,8 @@ class ProfessionalController {
         const {professional_id} = req.params;
 
         const profEvaluations = await Professional.findByPk(professional_id,  {
-            include: [{association: 'evaluationsProfessional'}]
+            include: [{association: 'evaluationsProfessional'}
+            ]
         })
         
         res.json(profEvaluations);

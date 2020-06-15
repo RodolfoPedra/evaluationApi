@@ -7,9 +7,10 @@ import User from '../models/User';
 class EvaluationController {
 
     async indexEvaluations(req, res) {
+        let evaluations = '';
         const {professional_id} = req.params;
 
-        const evaluations = await Evaluation.findAll({
+        evaluations = await Evaluation.findAll({
             where: {
                 professional_id: professional_id
             },
@@ -19,7 +20,12 @@ class EvaluationController {
             ]
         });
 
-        return res.json(evaluations);
+        if(!evaluations) {
+            return Professional.findByPk(professional_id);
+        } else {
+            return res.json(evaluations);
+        }
+
     }
 
     async store(req, res) {
